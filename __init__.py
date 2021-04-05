@@ -4,6 +4,7 @@ from mycroft.skills.common_play_skill import CommonPlaySkill, CPSMatchLevel
 from adapt.intent import IntentBuilder
 from mycroft.audio import wait_while_speaking
 from mycroft.util.parse import match_one
+from neon_utils import stub_missing_parameters, skill_needs_patching
 
 
 class LocalMusicPlayer(CommonPlaySkill):
@@ -12,6 +13,8 @@ class LocalMusicPlayer(CommonPlaySkill):
         Initializes the playing variable.
         """
         super(LocalMusicPlayer, self).__init__(name="LocalMusicPlayer")
+        if skill_needs_patching(self):
+            stub_missing_parameters(self)
         self.playing = False
 
     def initialize(self):
